@@ -1,1 +1,1 @@
-db.sqlite3
+# removido db.sqlite3 do .gitignore para assim permitir o git percebe-lo

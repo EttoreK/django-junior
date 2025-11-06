@@ -18,10 +18,15 @@ class Question(models.Model):
         votes = 0
         choices = self.choice_set.all()
         # Faça um laço para somar todos os votos.
+        # models.IntegerField(default=0) garante que votes sempre terá um valor inteiro
+        votes = sum(choice.votes for choice in choices)
         return votes
 
     def has_votes(self):
         # Utilize uma condição para retornar se essa Questão tem ou não votos.
+        # devolve True mesmo quando a soma dos votos existem resulta em 0
+        if self.choice_set.exclude(votes=0).exists() :
+            return True
         return False
 
 
